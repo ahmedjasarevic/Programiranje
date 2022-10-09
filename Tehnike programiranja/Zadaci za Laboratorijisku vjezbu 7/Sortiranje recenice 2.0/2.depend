@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1663497887 source:c:\users\ahmed\onedrive\dokumenti\to do\vjezba - lab 6\2\2\main.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+
