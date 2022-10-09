@@ -1,0 +1,4 @@
+  friend  ostream&  operator<<(ostream& os,Krug const &obj){
+        os << "Poluprecnik kruga je: " << obj.poluprecnik;
+        return os;
+    }
