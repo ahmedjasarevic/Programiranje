@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1664909988 source:c:\users\ahmed\onedrive\dokumenti\to do\vjezba - lab 10\dodatno\9\9\main.cpp
+	<iostream>
+	<string.h>
+	<algorithm>
+

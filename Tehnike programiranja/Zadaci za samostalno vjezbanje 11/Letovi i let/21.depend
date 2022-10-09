@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1665230709 source:c:\users\ahmed\onedrive\dokumenti\to do\vjezba - lab 10\dodatno\21\21\main.cpp
+	<iostream>
+	<string.h>
+	<iomanip>
+	<algorithm>
+
