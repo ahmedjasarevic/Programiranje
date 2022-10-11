@@ -77,30 +77,31 @@ public:
 class Liga
 {
     friend class Tim;
-    Tim **broj_timova;
+    int *broj_timova;
     const int max_br_timova = 0;
     int timovi ;
-    int brojac = 0;
+    vector<Tim> listaTimova;
+    Tim a( const char imena[])
+    {
+        listaTimova.push_back(imena);
+    }
 public:
     explicit Liga(int velicina_lige)
     {
-        broj_timova = new Tim*[velicina_lige];
+        broj_timova = new int;
+        *broj_timova = velicina_lige;
 
     }
     explicit Liga(std::initializer_list<Tim> lista_timova)
     {
         for(Tim v : lista_timova)
         {
-            broj_timova[brojac] = new Tim(v);
-            brojac++;
+            listaTimova.push_back(v);
         }
     }
     ~Liga()
     {
-        for(int i = 0; i<brojac; i++)
-        {
-            delete broj_timova[i];
-        }
+        delete broj_timova;
     }
     Liga(const Liga &l)
     {
@@ -115,20 +116,20 @@ public:
     void DodajNoviTim(const char ime_tima[])
     {
         Tim a("test");
-        broj_timova[brojac] = new Tim(ime_tima);
-        brojac++;
+        listaTimova.push_back(ime_tima);
+        broj_timova += 1;
     }
     void RegistrirajUtakmicu(const char tim1[], const char tim2[],int rezultat_1, int rezultat_2)
     {
         cout << tim1 << " " << rezultat_1 << " : " << rezultat_2 << " "<< tim2 << endl;
         int flag = 0,flag2 = 0;
-        for(auto i = 0; i <brojac; i++)
+        for(auto i = 0; i <listaTimova.size(); i++)
         {
-            if(strcmp(tim1,broj_timova[i]->ime_tima) ==  0)
+            if(strcmp(tim1,listaTimova[i].ime_tima) ==  0)
             {
                 flag = 1;
             }
-            if(strcmp(tim2,broj_timova[i]->ime_tima) ==  0) flag2 = 1;
+            if(strcmp(tim2,listaTimova[i].ime_tima) ==  0) flag2 = 1;
         }
         if(flag == 0 || flag2 == 0)
         {
@@ -136,51 +137,51 @@ public:
         }
         else
         {
-            for(auto i = 0; i <brojac; i++)
+            for(auto i = 0; i <listaTimova.size(); i++)
             {
-                if(strcmp(tim1,broj_timova[i]->ime_tima) ==  0)
+                if(strcmp(tim1,listaTimova[i].ime_tima) ==  0)
                 {
-                    broj_timova[i]->broj_odigranih += 1;
+                    listaTimova[i].broj_odigranih += 1;
 
                     if(rezultat_1 > rezultat_2)
                     {
-                        broj_timova[i]->broj_pobjeda += 1;
-                        broj_timova[i]->broj_poena += 3;
+                        listaTimova[i].broj_pobjeda += 1;
+                        listaTimova[i].broj_poena += 3;
                     }
                     if(rezultat_1 == rezultat_2)
                     {
-                        broj_timova[i]->broj_nerijesenih += 1;
-                        broj_timova[i]->broj_poena +=1;
+                        listaTimova[i].broj_nerijesenih += 1;
+                        listaTimova[i].broj_poena +=1;
                     }
                     if(rezultat_1 < rezultat_2)
                     {
-                        broj_timova[i]->broj_poraza += 1;
+                        listaTimova[i].broj_poraza += 1;
                     }
 
-                    broj_timova[i]->broj_primljenih += rezultat_2;
-                    broj_timova[i]->broj_datih += rezultat_1;
+                    listaTimova[i].broj_primljenih += rezultat_2;
+                    listaTimova[i].broj_datih += rezultat_1;
 
                 }
-                if(strcmp(tim2,broj_timova[i]->ime_tima) ==  0)
+                if(strcmp(tim2,listaTimova[i].ime_tima) ==  0)
                 {
-                    broj_timova[i]->broj_odigranih += 1;
+                    listaTimova[i].broj_odigranih += 1;
 
                     if(rezultat_1 < rezultat_2)
                     {
-                        broj_timova[i]->broj_pobjeda += 1;
-                        broj_timova[i]->broj_poena += 3;
+                        listaTimova[i].broj_pobjeda += 1;
+                        listaTimova[i].broj_poena += 3;
                     }
                     if(rezultat_1 == rezultat_2)
                     {
-                        broj_timova[i]->broj_nerijesenih+= 1;
-                        broj_timova[i]->broj_poena +=1;
+                        listaTimova[i].broj_nerijesenih+= 1;
+                        listaTimova[i].broj_poena +=1;
                     }
                     if(rezultat_1 > rezultat_2)
                     {
-                        broj_timova[i]->broj_poraza += 1;
+                        listaTimova[i].broj_poraza += 1;
                     }
-                    broj_timova[i]->broj_primljenih += rezultat_1;
-                    broj_timova[i]->broj_datih+= rezultat_2;
+                    listaTimova[i].broj_primljenih += rezultat_1;
+                    listaTimova[i].broj_datih+= rezultat_2;
                 }
             }
         }
@@ -189,41 +190,19 @@ public:
     void IspisiTabelu()
     {
 
-
-        for(int i = 0; i < brojac; i++)
+        sort( listaTimova.begin( ), listaTimova.end( ), [ ]( const Tim& lhs, const Tim& rhs )
         {
-            for(int j = 0; j < (brojac - i - 1); j++)
-            {
-                if(broj_timova[j]->broj_poena == broj_timova[j+1]->broj_poena)
-                {
-                    if((broj_timova[j]->broj_datih - broj_timova[j]->broj_primljenih) < (broj_timova[j+1]->broj_datih - broj_timova[j+1]->broj_primljenih))
-                    {
-                        swap(broj_timova[j],broj_timova[j+1]);
-                    }
-                }
-            }
-        }
-
-
-
-
-        for(int i = 0; i < brojac; i++)
+            if( lhs.broj_poena == rhs.broj_poena) return (lhs.broj_datih - lhs.broj_primljenih) > (rhs.broj_datih - rhs.broj_primljenih);
+        });
+        sort( listaTimova.begin( ), listaTimova.end( ), [ ]( const Tim& lhs, const Tim& rhs )
         {
-            for(int j = 0; j < (brojac - i - 1); j++)
-            {
-                if(broj_timova[j]->broj_poena < broj_timova[j+1]->broj_poena)
-                {
-                    swap(broj_timova[j],broj_timova[j+1]);
-                }
-            }
-        }
-
-        for(int i = 0; i<brojac; i++)
+            return lhs.broj_poena > rhs.broj_poena;
+        });
+        cout << endl;
+        for(auto v : listaTimova)
         {
-            broj_timova[i]->IspisiPodatke();
-
+            v.IspisiPodatke() ;
         }
-
     }
 };
 
