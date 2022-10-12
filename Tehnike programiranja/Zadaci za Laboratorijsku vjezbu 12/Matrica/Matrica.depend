@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1665568241 source:c:\users\ahmed\onedrive\dokumenti\programiranje c++\tehnike programiranja\zadaci za laboratorijsku vjezbu 12\matrica\main.cpp
+	<iostream>
+	<iomanip>
+	<cstring>
+	<stdexcept>
+	<new>
+
