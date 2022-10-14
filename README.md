@@ -1,19 +1,19 @@
 # Programiranje
 
-# Osnove programiranje
--Cifre
+# Osnove programiranja
+- Cifre
 
--Uslovi i grananje
+- Uslovi i grananje
 
--Petlje
+- Petlje
 
--Nizovi
+- Nizovi
 
--Petlje
+- Petlje
 
--Robot
+- Robot
 
 
 # Tehnike programiranja
 
--Zadaci za laboratorijsku vjezbu 2-12
+- Zadaci za laboratorijsku vjezbu 2-12
