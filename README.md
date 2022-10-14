@@ -3,15 +3,15 @@
 # Osnove programiranja
 - [Cifre](https://github.com/ahmedjasarevic/Programiranje/tree/main/Osnove%20programiranja/Cifre%2Cuslovi%20i%20grananje%2Cpetlje)
 
-- Uslovi i grananje
+- [Uslovi i grananje](https://github.com/ahmedjasarevic/Programiranje/tree/main/Osnove%20programiranja/Cifre%2Cuslovi%20i%20grananje%2Cpetlje)
 
-- Petlje
+- [Pelje](https://github.com/ahmedjasarevic/Programiranje/tree/main/Osnove%20programiranja/Cifre%2Cuslovi%20i%20grananje%2Cpetlje)
 
-- Nizovi
+- [Nizovi](https://github.com/ahmedjasarevic/Programiranje/tree/main/Osnove%20programiranja/Nizovi%20-%20nastavak)
 
-- Petlje -dodatno-
+- [Petlje -dodatno-](https://github.com/ahmedjasarevic/Programiranje/tree/main/Osnove%20programiranja/Petlje%20-%20nastavak)
 
-- Robot
+- [Robot](https://github.com/ahmedjasarevic/Programiranje/tree/main/Osnove%20programiranja/Robot)
 
 
 # Tehnike programiranja
