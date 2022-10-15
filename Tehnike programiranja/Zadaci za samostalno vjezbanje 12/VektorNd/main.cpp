@@ -96,9 +96,6 @@ public:
         return brojac;
     }
 
-
-
-
     friend double vratiDuzinu(VektorNd a,int kordinata);
     friend ostream &operator << (ostream &out, VektorNd &o);
     friend VektorNd operator+(VektorNd& a, VektorNd& b);
@@ -112,7 +109,7 @@ ostream &operator << (ostream &out, VektorNd &o)
         if(i == (o.Nvektora-1)) out<< o.indeksKordiante(i) ;
         else out<< o.indeksKordiante(i) <<" ,";
     }
-    out << "}";
+    out << "}" << endl;
     return out;
 }
 
@@ -133,8 +130,8 @@ VektorNd operator+(VektorNd& a,VektorNd& b)
     VektorNd c(a.Nvektora);
     for(int i = 0; i<a.Nvektora; i++)
     {
-    c.pok[i] += a.pok[i] + b.pok[i];
-    cout << c.pok[i];
+        c.pok[i] = a.pok[i] + b.pok[i];
+        cout << c.pok[i];
     }
     return c;
 }
@@ -148,8 +145,8 @@ int main()
     b.zadajKordinatu(1,3);
     b.zadajKordinatu(2,4);
     cout << a;
-   VektorNd c(2);
-   c = a + b;
-   cout << c;
+    cout << b;
+    cout << a + b;
+
     return 0;
 }
