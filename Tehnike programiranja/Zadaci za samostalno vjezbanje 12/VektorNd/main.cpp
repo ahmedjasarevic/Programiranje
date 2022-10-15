@@ -53,7 +53,7 @@ public:
         return Nvektora;
     }
 
-    int indeksKordiante(int indeks)
+    int indeksKordiante(int indeks) const
     {
         for(int i = 0; i < Nvektora; i++)
         {
@@ -97,21 +97,28 @@ public:
     }
 
     friend double vratiDuzinu(VektorNd a,int kordinata);
-    friend ostream &operator << (ostream &out, VektorNd &o);
-    friend VektorNd operator+(VektorNd& a, VektorNd& b);
+    friend ostream &operator << (ostream &out,const VektorNd &o);
+    friend VektorNd operator+(VektorNd& a, const VektorNd& b);
+    friend VektorNd operator-(VektorNd& a, const VektorNd& b);
+    friend VektorNd operator*(VektorNd& a, int broj);
+    friend VektorNd operator*(int broj,VektorNd& a);
+    friend VektorNd operator+=(VektorNd& a, const VektorNd& b);
+    friend VektorNd operator-=(VektorNd& a, const VektorNd& b);
+    friend VektorNd operator*=(VektorNd& a, const VektorNd& b);
 };
 
-ostream &operator << (ostream &out, VektorNd &o)
+ostream &operator << (ostream &out, const VektorNd &o)
 {
     out<< "{" ;
     for(int i = 0; i<o.Nvektora; i++)
     {
-        if(i == (o.Nvektora-1)) out<< o.indeksKordiante(i) ;
+        if(i == (o.Nvektora-1)) out  << o.indeksKordiante(i) ;
         else out<< o.indeksKordiante(i) <<" ,";
     }
     out << "}" << endl;
     return out;
 }
+
 
 
 double vratiDuzinu(VektorNd a,int kordinata)
@@ -124,17 +131,70 @@ double vratiDuzinu(VektorNd a,int kordinata)
     return sqrt(suma);
 }
 
-VektorNd operator+(VektorNd& a,VektorNd& b)
+VektorNd operator+(VektorNd& a,const VektorNd& b)
 {
-    if(a.Nvektora != b.Nvektora) throw domain_error("Neisrpavna velicina");
+    if(a.Nvektora != b.Nvektora) throw domain_error("Neispravna velicina");
     VektorNd c(a.Nvektora);
     for(int i = 0; i<a.Nvektora; i++)
     {
         c.pok[i] = a.pok[i] + b.pok[i];
-        cout << c.pok[i];
     }
     return c;
 }
+
+VektorNd operator-(VektorNd& a,const VektorNd& b)
+{
+    if(a.Nvektora != b.Nvektora) throw domain_error("Neispravna velicina");
+    VektorNd c(a.Nvektora);
+    for(int i = 0; i<a.Nvektora; i++)
+    {
+        c.pok[i] = a.pok[i] - b.pok[i];
+    }
+    return c;
+}
+
+VektorNd operator*(VektorNd& a, int broj){
+for(int i = 0; i<a.Nvektora; i++)
+    {
+        a.pok[i] *= broj;
+    }
+    return a;
+}
+
+VektorNd operator*(int broj,VektorNd& a){
+for(int i = 0; i<a.Nvektora; i++)
+    {
+        a.pok[i] *= broj;
+    }
+    return a;
+}
+
+VektorNd operator+=(VektorNd& a, const VektorNd& b){
+for(int i = 0; i<a.Nvektora; i++)
+    {
+        a.pok[i] += b.pok[i];
+    }
+    return a;
+}
+
+VektorNd operator-=(VektorNd& a, const VektorNd& b){
+    for(int i = 0; i<a.Nvektora; i++)
+    {
+        a.pok[i] -= b.pok[i];
+    }
+    return a;
+    }
+
+VektorNd operator*=(VektorNd& a, const VektorNd& b){
+for(int i = 0; i<a.Nvektora; i++)
+    {
+        a.pok[i] *= b.pok[i];
+    }
+    return a;
+}
+
+
+
 
 int main()
 {
