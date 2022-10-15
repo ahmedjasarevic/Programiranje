@@ -1,6 +1,6 @@
 # Programiranje
 
-## Osnove programiranja
+# Osnove programiranja
 - [Cifre](https://github.com/ahmedjasarevic/Programiranje/tree/main/Osnove%20programiranja/Cifre%2Cuslovi%20i%20grananje%2Cpetlje)
 
 - [Uslovi i grananje](https://github.com/ahmedjasarevic/Programiranje/tree/main/Osnove%20programiranja/Cifre%2Cuslovi%20i%20grananje%2Cpetlje)
@@ -15,6 +15,7 @@
 
 
 # Tehnike programiranja
+
 ## Zadaci za laboratorijsku vjezbu 2-12
 
 - [Zadaci za Laboratorijsku vjezbu 2](https://github.com/ahmedjasarevic/Programiranje/tree/main/Tehnike%20programiranja/Zadaci%20za%20Laboratorijsku%20vjezbu%202)
