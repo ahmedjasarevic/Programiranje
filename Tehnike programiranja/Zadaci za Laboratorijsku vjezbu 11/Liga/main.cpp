@@ -77,7 +77,7 @@ public:
 class Liga
 {
     friend class Tim;
-    Tim **broj_timova;
+    Tim **broj_timova = NULL;
     const int max_br_timova = 0;
     int timovi ;
     int brojac = 0;
@@ -87,9 +87,10 @@ public:
         broj_timova = new Tim*[velicina_lige];
 
     }
-    explicit Liga(std::initializer_list<Tim> lista_timova)
+    Liga(std::initializer_list<Tim> lista_timova)
     {
-        for(Tim v : lista_timova)
+        broj_timova = new Tim*[lista_timova.size()];
+        for(auto v : lista_timova)
         {
             broj_timova[brojac] = new Tim(v);
             brojac++;
@@ -102,6 +103,7 @@ public:
             delete broj_timova[i];
         }
     }
+
     Liga(const Liga &l)
     {
         broj_timova = l.broj_timova;
