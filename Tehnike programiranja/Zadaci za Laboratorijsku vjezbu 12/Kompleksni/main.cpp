@@ -222,8 +222,6 @@ int main()
     cout << a5;
     cout << a6;
     cout << a7;
-    Kompleksni a8;
-    cin >> a8;
-    cout << a8;
+ cout << real(a);
     return 0;
 }
