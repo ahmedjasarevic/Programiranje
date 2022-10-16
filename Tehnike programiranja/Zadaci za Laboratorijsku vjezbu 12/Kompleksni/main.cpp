@@ -101,17 +101,26 @@ public:
 
 istream &operator >>(std::istream &tok, Kompleksni &a) {
     string kompleksniString,realni,imaginarni;
-    bool znakRealnog,znakImaginarnog;
+    bool znakRealnog,znakImaginarnog,nemaREALdio,nemaIMGdio;
     tok >> kompleksniString; // unos kompleksnog broja kao string ( format: a + bi)
     if(kompleksniString[0] == '-') znakRealnog = true;  // prvi znak stringa predstavlja znak realnog dijela
     else znakRealnog = false;
+    for(int i = 0; i < kompleksniString.size(); i++){
+        if(kompleksniString[0] == '+' || kompleksniString[0] == '-')i++;
+        if(kompleksniString[i] != '+' || kompleksniString[i] != '-' && kompleksniString[i] == 'i') nemaREALdio = false;
+        else nemaREALdio = true;
+    }
+    for(int i = 0; i < kompleksniString.size(); i++){
+        if(kompleksniString[0] == '+' || kompleksniString[0] == '-')i++;
+        if(kompleksniString[i] != '+' || kompleksniString[i] != '-' && kompleksniString[i] != 'i') nemaIMGdio = false;
+        else nemaIMGdio = true;
+    }
     if(znakRealnog == false){ // realni dio ima znak '+'
-                cout << kompleksniString.size();
         for(int i = 0; i<kompleksniString.size(); i++){
-                cout << kompleksniString.size();
             while(kompleksniString[i] != '+' && kompleksniString[i] != '-'){  // prolazak kroz petlju sve dok ne dodjemo do znaka imaginarnog dijela
                 realni += kompleksniString[i]; // smjestamo realni dio
                 i++;
+
             }
             while(kompleksniString[i] != 'i'){ // prolazak kroz petlju sve do kraja tj. do 'i'
                 if(kompleksniString[i] == '-') znakImaginarnog = true; // znak imaginarnog dijela
@@ -140,14 +149,28 @@ istream &operator >>(std::istream &tok, Kompleksni &a) {
         }
     }
     int realDio,imgDio;
-    cout << realni << " " << imaginarni;
     try{
+        if(nemaREALdio == true){
+            realDio = 0;
+        }
+        else{
      realDio = stoi(realni); // pretvaranje stringa u int
-     imgDio = stoi(imaginarni); // pretvaranje stringa u int
+        }
     }
     catch(...){
-    imaginarni[0] = '1';
-    imgDio = stoi(imaginarni);
+    cout << "realnidio";
+    }
+    try{
+        if(nemaIMGdio == true){
+            imgDio = 0;
+        }
+        else{
+     imgDio = stoi(imaginarni); // pretvaranje stringa u int
+        }
+    }
+    catch(...){
+    cout << "imgdio";
+    realDio = 0;
     }
     if(znakRealnog == true){ // realni dio ima znak '-'
         a.re = realDio * (-1) ;
