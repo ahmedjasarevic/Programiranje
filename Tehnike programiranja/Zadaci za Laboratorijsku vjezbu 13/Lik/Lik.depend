@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1666036113 source:c:\users\ahmed\onedrive\dokumenti\github\programiranje\tehnike programiranja\zadaci za laboratorijsku vjezbu 13\lik\main.cpp
+	<iostream>
+	<math.h>
+	<vector>
+	<memory>
+
