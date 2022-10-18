@@ -110,6 +110,7 @@ class Fakultet : public ApstraktniStudent
     vector<ApstraktniStudent*> vec;
     int brStudenata = 0;
 public:
+    Fakultet::Fakultet() {}
     virtual ~Fakultet()
     {
         for (int i = 0; i < vec.size(); i++)
@@ -188,6 +189,8 @@ public:
 
 int main()
 {
-    Fakultet f();
+    Fakultet* f[5];
+    f[0] = new f.UpisStudenta("a","daasd",55);
+    f[0]->RegistrirajIspit(8);
     return 0;
 }
