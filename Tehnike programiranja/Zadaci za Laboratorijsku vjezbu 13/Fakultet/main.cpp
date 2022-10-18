@@ -106,22 +106,24 @@ public:
 
 class Fakultet : public ApstraktniStudent
 {
-    ApstraktniStudent **pok;
+
     vector<ApstraktniStudent*> vec;
     int brStudenata = 0;
-    int maxbrStudenata;
 public:
-    ~Fakultet()
+    virtual ~Fakultet()
     {
-        delete [] pok;
+        for (int i = 0; i < vec.size(); i++)
+        {
+            delete vec[i];
+        }
     }
     void UpisStudenta(int ind,string ime,string prezime)
     {
-        pok[brStudenata] = new StudentBachelor(ime,prezime,ind);
+        vec.push_back( new StudentBachelor(ime,prezime,ind));
         brStudenata++;
         for(int i = 0; i<brStudenata; i++)
         {
-            if(pok[i]->DajBrojIndeksa() == ind)
+            if(vec[i]->DajBrojIndeksa() == ind)
             {
                 throw domain_error("Student sa zadanim brojem idneksa vec postoji");
             }
@@ -130,7 +132,7 @@ public:
 
     void UpisStudenta(int ind,string ime,string prezime,int kraj)
     {
-        pok[brStudenata] = new StudentMaster(ime,prezime,ind,kraj);
+        vec.push_back( new StudentMaster(ime,prezime,ind,kraj));
         brStudenata++;
     }
 
@@ -139,10 +141,10 @@ public:
         bool flag = false;
         for(int i = 0; i<brStudenata; i++)
         {
-            if(pok[i]->DajBrojIndeksa() == indeks)
+            if(vec[i]->DajBrojIndeksa() == indeks)
             {
                 flag = true;
-                delete pok[i];
+                delete vec[i];
             }
         }
 
@@ -153,9 +155,9 @@ public:
     {
         for(int i = 0; i<brStudenata; i++)
         {
-            if(pok[i]->DajBrojIndeksa() == indeks)
+            if(vec[i]->DajBrojIndeksa() == indeks)
             {
-                return *pok[i];
+                return *vec[i];
             }
         }
     }
@@ -164,15 +166,16 @@ public:
     {
         for(int i = 0; i<brStudenata; i++)
         {
-            if(pok[i]->DajBrojIndeksa() == indeks)
+            if(vec[i]->DajBrojIndeksa() == indeks)
             {
-                return *pok[i];
+                return *vec[i];
             }
         }
     }
 
-    void IspisiSveStudente() {
-          for(int i = 0; i<brStudenata; i++)
+    void IspisiSveStudente()
+    {
+        for(int i = 0; i<brStudenata; i++)
         {
             IspisiPodatke();
         }
@@ -185,7 +188,6 @@ public:
 
 int main()
 {
-
-
+    Fakultet f();
     return 0;
 }

@@ -110,7 +110,7 @@ swap(p_lik, lik.p_lik);
 return *this;
 }
 void IspisiPodatke() const { Test(); p_lik->IspisiPodatke(); }
-    void RegistrirajIspit(int ocjena){ Test(); p_lik->IspisiPodatke(); }
+void RegistrirajIspit(int ocjena){ Test(); p_lik->IspisiPodatke(); }
 };
 
 int main()
