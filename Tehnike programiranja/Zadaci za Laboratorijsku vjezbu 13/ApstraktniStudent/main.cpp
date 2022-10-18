@@ -55,10 +55,14 @@ public:
 
 class StudentBachelor : public ApstraktniStudent{
     public:
+
+    StudentBachelor(string i, string p,int ind) :  ApstraktniStudent(i, p,ind){}
+
     void IspisiPodatke(){
-    cout <<"Student bachelor studij a" << DajIme() << " " << DajPrezime() << ", sa brojem indeksa " << DajBrojIndeksa() << endl;
+    cout <<"Student bachelor studija " << DajIme() << " " << DajPrezime() << ", sa brojem indeksa " << DajBrojIndeksa() << endl;
     cout << ", ima prosjek " <<DajProsjek() <<endl;
     }
+
     ApstraktniStudent *DajKopiju() const override {
     return new StudentBachelor(*this);
     }
@@ -67,7 +71,7 @@ class StudentBachelor : public ApstraktniStudent{
 class StudentMaster : public ApstraktniStudent{
 int krajPrvogstepena;
 public:
-     StudentMaster(string i, string p,int ind,int kraj) :  ApstraktniStudent(i, p,ind){
+    StudentMaster(string i, string p,int ind,int kraj) :  ApstraktniStudent(i, p,ind){
     krajPrvogstepena = kraj;
     }
     ApstraktniStudent *DajKopiju() const override {
