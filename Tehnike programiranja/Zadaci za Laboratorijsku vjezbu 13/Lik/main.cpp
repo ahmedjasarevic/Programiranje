@@ -125,6 +125,9 @@ int main()
        }
         if(unos == 'K'){
                 cin >> a;
+                               if(cin.fail()){
+                    cout << "bosmna";
+                }
          pok[i] = make_shared<Krug>(a);
                 vec.push_back(pok[i]);
      }
