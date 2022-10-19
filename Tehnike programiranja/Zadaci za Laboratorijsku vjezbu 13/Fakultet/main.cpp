@@ -1,3 +1,5 @@
+
+
 #include <iostream>
 #include <vector>
 #include <memory>
@@ -11,6 +13,7 @@ class ApstraktniStudent
     int brPolozenih;
     double prosjek;
 public:
+    ApstraktniStudent(){}
     ApstraktniStudent(string i, string p,int ind)
     {
         ime = i;
@@ -106,11 +109,9 @@ public:
 
 class Fakultet : public ApstraktniStudent
 {
-
     vector<ApstraktniStudent*> vec;
     int brStudenata = 0;
 public:
-    Fakultet::Fakultet() {}
     virtual ~Fakultet()
     {
         for (int i = 0; i < vec.size(); i++)
@@ -120,15 +121,17 @@ public:
     }
     void UpisStudenta(int ind,string ime,string prezime)
     {
-        vec.push_back( new StudentBachelor(ime,prezime,ind));
-        brStudenata++;
-        for(int i = 0; i<brStudenata; i++)
+            for(int i = 0; i<brStudenata; i++)
         {
-            if(vec[i]->DajBrojIndeksa() == ind)
+            if(vec[i]->DajBrojIndeksa() == ind && brStudenata != 1)
             {
+                cout << vec[2]->DajBrojIndeksa() << " " << ind << endl;
                 throw domain_error("Student sa zadanim brojem idneksa vec postoji");
             }
         }
+
+        vec.push_back( new StudentBachelor(ime,prezime,ind));
+        brStudenata++;
     }
 
     void UpisStudenta(int ind,string ime,string prezime,int kraj)
@@ -163,7 +166,7 @@ public:
         }
     }
 
-    ApstraktniStudent& operator[](int indeks)
+     ApstraktniStudent& operator[](int indeks)
     {
         for(int i = 0; i<brStudenata; i++)
         {
@@ -178,19 +181,35 @@ public:
     {
         for(int i = 0; i<brStudenata; i++)
         {
-            IspisiPodatke();
+           IspisiPodatke();
+           break;
         }
     }
 
+     void IspisiPodatke() {
+         for(int i = 0; i<brStudenata; i++)
+        {
+           vec[i]->IspisiPodatke();
 
+        }
+     }
+      ApstraktniStudent *DajKopiju() const override
+    {
+        return new Fakultet(*this);
+    }
 
 };
 
 
 int main()
 {
-    Fakultet* f[5];
-    f[0] = new f.UpisStudenta("a","daasd",55);
-    f[0]->RegistrirajIspit(8);
+   Fakultet f;
+   string ime = "ahmed";
+   string prezime = "jasarevic";
+   f.UpisStudenta(55,ime,prezime);
+   f.UpisStudenta(35,ime,prezime,3);
+   f.UpisStudenta(13,ime,prezime);
+   f.IspisiSveStudente();
     return 0;
+
 }

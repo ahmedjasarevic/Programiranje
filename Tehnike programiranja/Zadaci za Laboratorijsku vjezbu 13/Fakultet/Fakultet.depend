@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1666174705 source:c:\users\ahmed\onedrive\dokumenti\github\programiranje\tehnike programiranja\zadaci za laboratorijsku vjezbu 13\fakultet\main.cpp
+	<iostream>
+	<vector>
+	<memory>
+
