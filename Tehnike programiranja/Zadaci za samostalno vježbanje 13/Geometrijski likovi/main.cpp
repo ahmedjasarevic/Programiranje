@@ -51,12 +51,10 @@ double poluprecnik;
 public:
     Krug(){
     poluprecnik = 0;
-    DajNazivLika() = "Krug";
     }
 
-    Krug(double a){
+    Krug(double a, string naziv): ApstraktnaKlasa(naziv){
     poluprecnik = a;
-    DajNazivLika() = "Krug";
     }
 
 
@@ -75,7 +73,7 @@ public:
     DajNazivLika() = "Pravougaonik";
     }
 
-    Pravougaonik(double a,double b){
+    Pravougaonik(double a,double b, string naziv): ApstraktnaKlasa(naziv){
     if(b <= 0 || a <= 0) throw domain_error("Neispravni parametri");
     Pravougaonik::a = a;
     Pravougaonik::b = b;
@@ -97,7 +95,7 @@ public:
      DajNazivLika() = "Trougao";
     }
 
-    Trougao(double a,double b,double c){
+    Trougao(double a,double b,double c ,string naziv): ApstraktnaKlasa(naziv){
     if(b <= 0 || a <= 0 || c <= 0) throw domain_error("Neispravni parametri");
     Trougao::a = a;
     Trougao::b = b;
@@ -137,20 +135,19 @@ public:
     }
 
     void DodajKrug(double r){
-    pok[brojLikova] = new Krug(r);
-    pok[brojLikova]->DajNazivLika() = "Krug";
+    pok[brojLikova] = new Krug(r,"Krug");
     brojLikova++;
     }
 
 
     void DodajPravougaonik(double a,double b){
-    pok[brojLikova] = new Pravougaonik(a,b);
+    pok[brojLikova] = new Pravougaonik(a,b,"Pravougaonik");
     brojLikova++;
     }
 
 
     void DodajTrougao(double a,double b,double c){
-    pok[brojLikova] = new Trougao(a,b,c);
+    pok[brojLikova] = new Trougao(a,b,c,"Trougao");
     brojLikova++;
     }
 
@@ -204,8 +201,8 @@ return false;
 
  ostream &operator << (ostream &out,  KontejnerskaKlasa &o) {
      for(int i = 0; i<o.brojLikova; i++){
-        out << o.pok[i]->DajNazivLika();
-        out <<"Lik: " << o.pok[i]->ObimLika() ;
+        out << o.pok[i]->DajNazivLika() <<" ";
+        out << o.pok[i]->ObimLika() << endl;
      }
  }
 
@@ -214,7 +211,7 @@ int main()
 {
     KontejnerskaKlasa a(5);
     a.DodajKrug(5);
-    a.DodajKrug(5);
+    a.DodajPravougaonik(5,2);
     cout << a;
 
     return 0;
