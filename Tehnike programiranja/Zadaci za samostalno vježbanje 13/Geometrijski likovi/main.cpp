@@ -110,6 +110,12 @@ public:
     }
 };
 
+class KontejnerskaKlasa{
+ApstraktnaKlasa** pok;
+
+
+
+};
 
 
 

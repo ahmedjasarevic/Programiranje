@@ -204,7 +204,7 @@ public:
 int main()
 {
    Fakultet f;
-   string ime = "ahmed";
+   string ime = "ahmeda";
    string prezime = "jasarevic";
    f.UpisStudenta(55,ime,prezime);
    f.UpisStudenta(35,ime,prezime,3);
