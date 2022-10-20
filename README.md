@@ -35,5 +35,5 @@
 - [Zadaci za samostalno vjezbanje 10](https://github.com/ahmedjasarevic/Programiranje/tree/main/Tehnike%20programiranja/Zadaci%20za%20samostalno%20vjezbanje%2010)
 - [Zadaci za samostalno vjezbanje 11](https://github.com/ahmedjasarevic/Programiranje/tree/main/Tehnike%20programiranja/Zadaci%20za%20samostalno%20vjezbanje%2011)
 - [Zadaci za samostalno vjezbanje 12](https://github.com/ahmedjasarevic/Programiranje/tree/main/Tehnike%20programiranja/Zadaci%20za%20samostalno%20vjezbanje%2012)
-- [Zadaci za samostalno vjezbanje 13](https://github.com/ahmedjasarevic/Programiranje/tree/main/Tehnike%20programiranja/Zadaci%20za%20samostalno%20vjezbanje%2013)
+- [Zadaci za samostalno vjezbanje 13](https://github.com/ahmedjasarevic/Programiranje/tree/main/Tehnike%20programiranja/Zadaci%20za%20samostalno%20vje%C5%BEbanje%2013)
 
