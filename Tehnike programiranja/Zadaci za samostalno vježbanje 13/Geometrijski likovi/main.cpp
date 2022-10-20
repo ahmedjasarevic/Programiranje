@@ -28,7 +28,7 @@ public:
 };
 
  ostream &operator << (ostream &out,  ApstraktnaKlasa &o) {
- out <<"Lik: " << o.naziv <<" Obim: " << o.ObimLika();
+ out <<"Lik: " << o.naziv <<" Obim: " << o.ObimLika() << endl;
  }
 
  bool operator >(ApstraktnaKlasa &a,ApstraktnaKlasa &b){
@@ -59,10 +59,10 @@ public:
     DajNazivLika() = "Krug";
     }
 
-    double DajObim() const {
-        return 2 * 3.1415 * poluprecnik;
+
+    double ObimLika() {
+          return 2 * 3.1415 * poluprecnik;
     }
-    double ObimLika() {}
 
 
 };
@@ -82,8 +82,8 @@ public:
     DajNazivLika() = "Pravougaonik";
     }
 
-    double DajObim() const {
-        return 2 * a + 2 * b;
+    double ObimLika() {
+     return 2 * a + 2 * b;
     }
 
 
@@ -105,23 +105,117 @@ public:
     DajNazivLika() = "Trougao";
     }
 
-    double DajObim() const {
+    double ObimLika() {
         return a+b+c;
     }
 };
 
-class KontejnerskaKlasa{
+class KontejnerskaKlasa {
 ApstraktnaKlasa** pok;
+int brojLikova = 0;
+int kapacitet;
+int *poknaBrojac;
+public:
+    explicit KontejnerskaKlasa(int maxs){
+    pok = new ApstraktnaKlasa*[maxs];
+    kapacitet = maxs;
+
+    }
+
+    KontejnerskaKlasa(KontejnerskaKlasa &&objekat){
+    for(int i = 0; i<kapacitet; i++){
+        pok[i] = objekat.pok[i];
+    }
+    kapacitet = objekat.kapacitet;
+    objekat.poknaBrojac += 1;
+    poknaBrojac = objekat.poknaBrojac;
+    }
+
+    ~KontejnerskaKlasa(){
+    poknaBrojac -= 1;
+    if(poknaBrojac == 0) delete [] pok;
+    }
+
+    void DodajKrug(double r){
+    pok[brojLikova] = new Krug(r);
+    pok[brojLikova]->DajNazivLika() = "Krug";
+    brojLikova++;
+    }
 
 
+    void DodajPravougaonik(double a,double b){
+    pok[brojLikova] = new Pravougaonik(a,b);
+    brojLikova++;
+    }
 
+
+    void DodajTrougao(double a,double b,double c){
+    pok[brojLikova] = new Trougao(a,b,c);
+    brojLikova++;
+    }
+
+    int vratiBrojLikova(){
+    return brojLikova;
+    }
+
+    ApstraktnaKlasa& vratiNajveciObim(){
+        int maxs = INT_MIN;
+        for(int i = 0; i<kapacitet; i++){
+            if(pok[i]->ObimLika() > maxs){
+                maxs = pok[i]->ObimLika();
+            }
+        }
+
+        for(int i = 0; i<kapacitet; i++){
+            if(pok[i]->ObimLika() == maxs){
+                return *pok[i];
+            }
+        }
+    }
+
+    int vratiBrKrugova(){
+     int brojac = 0;
+        for(int i = 0; i<kapacitet; i++){
+            if(pok[i]->DajNazivLika() == "Krug"){
+                brojac++;
+            }
+        }
+    return brojac;
+    }
+
+    void sortirajLikove(){
+        for(int i = 0; i < kapacitet; i++){
+            for(int j = 0; j < (kapacitet - i - 1); j++){
+                if(pok[j]->ObimLika() < pok[j+1]->ObimLika()){
+                    swap(pok[j],pok[j+1]);
+                }
+            }
+        }
+    }
+
+    friend bool operator !(KontejnerskaKlasa &a);
+    friend ostream &operator << (ostream &out,  KontejnerskaKlasa &o);
 };
 
+bool operator !(KontejnerskaKlasa &a){
+if(a.brojLikova == 0) return true;
+return false;
+}
 
+ ostream &operator << (ostream &out,  KontejnerskaKlasa &o) {
+     for(int i = 0; i<o.brojLikova; i++){
+        out << o.pok[i]->DajNazivLika();
+        out <<"Lik: " << o.pok[i]->ObimLika() ;
+     }
+ }
 
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    KontejnerskaKlasa a(5);
+    a.DodajKrug(5);
+    a.DodajKrug(5);
+    cout << a;
+
     return 0;
 }
