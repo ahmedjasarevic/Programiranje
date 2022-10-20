@@ -29,6 +29,7 @@
 - [Zadaci za Laboratorijsku vjezbu 10](https://github.com/ahmedjasarevic/Programiranje/tree/main/Tehnike%20programiranja/Zadaci%20za%20Laboratorijsku%20vjezbu%2010)
 - [Zadaci za Laboratorijsku vjezbu 11](https://github.com/ahmedjasarevic/Programiranje/tree/main/Tehnike%20programiranja/Zadaci%20za%20Laboratorijsku%20vjezbu%2011)
 - [Zadaci za Laboratorijsku vjezbu 12](https://github.com/ahmedjasarevic/Programiranje/tree/main/Tehnike%20programiranja/Zadaci%20za%20Laboratorijsku%20vjezbu%2012)
+- [Zadaci za Laboratorijsku vjezbu 13](https://github.com/ahmedjasarevic/Programiranje/tree/main/Tehnike%20programiranja/Zadaci%20za%20Laboratorijsku%20vjezbu%2013)
 
 ## Dodatno
 - [Zadaci za samostalno vjezbanje 10](https://github.com/ahmedjasarevic/Programiranje/tree/main/Tehnike%20programiranja/Zadaci%20za%20samostalno%20vjezbanje%2010)
