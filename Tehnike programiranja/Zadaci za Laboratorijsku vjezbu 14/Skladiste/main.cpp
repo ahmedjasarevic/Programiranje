@@ -1,5 +1,7 @@
 #include <iostream>
-
+#include <fstream>
+#include <string>
+#include <vector>
 using namespace std;
 
 class ApstraktnaKlasa
@@ -7,47 +9,67 @@ class ApstraktnaKlasa
     double brPredmeta;
     double tezinaObjekta;
     string nazivObjekta;
-    double tezina;
+    double tezinaPredmeta;
 public:
-    ApstraktnaKlasa(string i,double a,double b,double p)
+    ApstraktnaKlasa(double tezina,string naziv,double brPredmeta,double tezinapredmeta)
     {
-        nazivObjekta = i;
-        tezinaObjekta = a;
-        tezina = b;
-        brPredmeta = p;
+        nazivObjekta = naziv;
+        tezinaObjekta = tezina;
+        ApstraktnaKlasa::tezinaPredmeta = tezinapredmeta ;
+        ApstraktnaKlasa::brPredmeta = brPredmeta;
     }
-    string DajNaziv(){
-    return nazivObjekta;
+    string DajNaziv()
+    {
+        return nazivObjekta;
     }
-    double DajTezinu(){
-    return tezinaObjekta;
+    double DajtezinaObjekta()
+    {
+        return tezinaObjekta;
     }
-    double DajTezinuTecnosti(){
-    return tezina;
+    double DajBrPredmeta()
+    {
+        return brPredmeta;
     }
-    double DajBrPredmeta(){
-    return brPredmeta;
+    double DajTezinu()
+    {
+        return tezinaPredmeta;
     }
+    virtual double DajUkupnuTezinu() = 0;
     virtual void IspisiPodatke() = 0;
 };
 
 class Sanduk : public ApstraktnaKlasa
 {
 public:
-    Sanduk(string i,double a,double b,double c) : ApstraktnaKlasa(i,a,b,c){}
+    Sanduk(double tezina,string naziv,double brPredmeta,double tezinaPredmeta) : ApstraktnaKlasa(tezina,naziv,brPredmeta,tezinaPredmeta) {}
+    double DajUkupnuTezinu()
+    {
+        return DajTezinu()+DajtezinaObjekta();
+    }
     void IspisiPodatke()
     {
-        cout << DajNaziv() << " " << DajTezinu() <<" " << DajBrPredmeta() <<" " <<DajTezinuTecnosti() <<endl;
+        cout << "Vrsta spremnika: Sanduk " << endl;
+        cout << "Sadrzaj: " <<   DajNaziv() << endl;
+        cout << "Broj predmeta: " << DajBrPredmeta()<< endl;
+        cout << "Tezina predmeta: " << DajtezinaObjekta()<< endl;
+        cout << "Ukupna tezina: " << DajUkupnuTezinu() << endl;
     }
 };
 
 class Bure : public ApstraktnaKlasa
 {
 public:
-    Bure(string i,double a,double b) : ApstraktnaKlasa(i,a,b,0) {}
+    Bure(double tezina,string nazivTec,double tezinaT) : ApstraktnaKlasa(tezina,nazivTec,0,tezinaT) {}
+    double DajUkupnuTezinu()
+    {
+        return DajTezinu()+DajtezinaObjekta();
+    }
     void IspisiPodatke()
     {
-        cout << DajNaziv() << " " << DajTezinu() <<" " << DajTezinuTecnosti() <<endl;
+        cout << "Vrsta spremnika: Bure " << endl;
+        cout << "Sadrzaj: " <<   DajNaziv() << endl;
+        cout << "Vlastita tezina: " << DajtezinaObjekta() << endl;
+        cout << "Ukupna tezina: " << DajUkupnuTezinu() << endl;
     }
 };
 
@@ -73,16 +95,16 @@ public:
         swap(kapacitet,o.kapacitet);
     }
 
-    void KreirajSanduk(string naziv,double tezina,double tezina2,double tezina3)
+    void KreirajSanduk(string naziv,double tezina,double brPredmeta,double tezinaPredmeta)
     {
-        pok[brojPredmeta] = new Sanduk(naziv,tezina,tezina2,tezina3);
+        pok[brojPredmeta] = new Sanduk(tezina,naziv,brPredmeta,tezinaPredmeta);
         brojPredmeta++;
     }
 
 
-    void KreirajBure(string naziv,double tezina,double tezina2)
+    void KreirajBure(string naziv,double tezina,double tezinaTecnosti)
     {
-        pok[brojPredmeta] = new Bure(naziv,tezina,tezina2);
+        pok[brojPredmeta] = new Bure(tezina,naziv,tezinaTecnosti);
         brojPredmeta++;
     }
 
@@ -113,9 +135,52 @@ public:
         return brojac;
     }
 
-    void IspisSkladista(){
-    for(int i = 0; i<brojPredmeta; i++)
-      pok[i]->IspisiPodatke();
+    void IspisSkladista()
+    {
+        for(int i = 0; i<brojPredmeta; i++)
+            pok[i]->IspisiPodatke();
+    }
+
+    void UcitajIzDatoteke(string imeDatoteke)
+    {
+        string line1,line2;
+        char znak,znak2;
+        int num;
+        ifstream novifajl(imeDatoteke);
+        if(novifajl.fail())
+        {
+            cerr << "Gteska" << endl;
+        }
+        getline(novifajl,line1);
+        string novi;
+        if(line1[0] == 'S' )
+        {
+            for(int i = 1; i<line1.size(); i++)
+            {
+                if(line1[i] == ' ') continue;
+                novi += line1[i];
+            }
+            vector<int> vektorBrojeva;
+            while(novifajl >> num)
+            {
+                vektorBrojeva.push_back(num);
+            }
+            KreirajSanduk(novi,vektorBrojeva[0],vektorBrojeva[1],vektorBrojeva[2]);
+        }
+        if(line1[0] == 'B' )
+        {
+            for(int i = 1; i<line1.size(); i++)
+            {
+                if(line1[i] == ' ') continue;
+                novi += line1[i];
+            }
+            vector<int> vektorBrojeva;
+            while(novifajl >> num)
+            {
+                vektorBrojeva.push_back(num);
+            }
+            KreirajBure(novi,vektorBrojeva[0],vektorBrojeva[1]);
+        }
     }
 
 
@@ -123,12 +188,9 @@ public:
 
 int main()
 {
-    ApstraktnaKlasa* p[2];
-    p[0] = new Bure("a",2,3);
-    p[0]->IspisiPodatke();
+
     Skladiste s(5);
-    s.KreirajBure("bure1",23,2);
-    s.KreirajSanduk("sanduk1",1,3,2);
+    s.UcitajIzDatoteke("ROBA.txt");
     s.IspisSkladista();
     return 0;
 }
