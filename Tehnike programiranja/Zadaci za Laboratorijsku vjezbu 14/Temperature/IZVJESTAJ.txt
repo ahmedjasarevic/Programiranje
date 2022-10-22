@@ -1,0 +1,6 @@
+Meteoroloska stanica Bjelave
+--------------------
+Datum mjerenja : 23/5/2016
+Minimalna temperatura : 6
+Maksimalna temperatura : 20
+Prosjecna temperatura : 13.1429
