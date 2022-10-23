@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1666522671 source:c:\users\ahmed\onedrive\dokumenti\github\programiranje\tehnike programiranja\zadaca 4\main.cpp
+	<iostream>
+	<tuple>
+	<math.h>
+	<vector>
+	<memory>
+	<limits>
+
