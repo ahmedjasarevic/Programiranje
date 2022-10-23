@@ -20,7 +20,7 @@ class Knjiga
     int izdanjeKnjige;
     Student* raspolozivostKnjige;
 public:
-    Knjiga(){}
+    Knjiga() {}
     Knjiga(string n,string ime,string z,int god)
     {
         naslov = n;
@@ -158,7 +158,7 @@ public:
 
     }
 
-     void izlistajKnjige()
+    void izlistajKnjige()
     {
         for(auto d : mapKnjiga)
         {
@@ -168,18 +168,20 @@ public:
             cout << "Zanr : " << d.second.DajZanr() <<endl;
             cout << "Godina izdavanja : " << d.second.DajGodinuIzdavanja() <<endl;
         }
-
     }
-};
 
-int main()
-{
-    Biblioteka a;
-    a.RegistrirajNovogStudenta(3,"ahmed","jasarevic",2022,12,62);
-    a.RegistrirajNovogStudenta(234,"s","jasarevic",2022,12,62);
-    a.RegistrirajNovuKnjigu(23,"string","ime","zanr",2022);
-    a.izlistajKorisnike();
-    cout << endl;
-    a.izlistajKnjige();
-    return 0;
-}
+
+
+    };
+
+    int main()
+    {
+        Biblioteka a;
+        a.RegistrirajNovogStudenta(3,"ahmed","jasarevic",2022,12,62);
+        a.RegistrirajNovogStudenta(234,"s","jasarevic",2022,12,62);
+        a.RegistrirajNovuKnjigu(23,"string","ime","zanr",2022);
+        a.izlistajKorisnike();
+        cout << endl;
+        a.izlistajKnjige();
+        return 0;
+    }
