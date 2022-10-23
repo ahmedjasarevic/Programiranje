@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <limits.h>
 using namespace std;
 
 class ApstraktnaKlasa
@@ -151,7 +152,7 @@ public:
         {
             cerr << "Gteska" << endl;
         }
-        getline(novifajl,line1);
+        while(getline(novifajl,line1)){
         string novi;
         if(line1[0] == 'S' )
         {
@@ -181,6 +182,7 @@ public:
             }
             KreirajBure(novi,vektorBrojeva[0],vektorBrojeva[1]);
         }
+    }
     }
 
 

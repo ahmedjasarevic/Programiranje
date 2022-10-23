@@ -1,47 +1,77 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include <sstream>
+#include <algorithm>
 using namespace std;
 
 int main()
 {
     string s;
     ifstream novifajl("TEMPERATURE.txt");
+
     if(novifajl.fail())
     {
         cerr << "Gteska" << endl;
     }
-    string datumMjerenja,meteoStanica,temperature;
+    string linija;
     int tempBroj,brojac = 0,suma = 0;
     double prosjecnaTemp;
     char znak;
     int minTemp = INT_MAX;
     int maxTemp = INT_MIN;
-    getline(novifajl,datumMjerenja);
-    getline(novifajl,meteoStanica);
-    while(novifajl >> tempBroj >> znak)
+    vector<string> datumi;
+    vector<string> nazivi;
+    vector<string> temperature;
+    vector<int> TempToINT;
+    int brojacLinija = 0,brojacProsjeka = 0;
+    int broj = 0;
+    while(getline(novifajl,linija))
     {
-        brojac++;
-        suma += tempBroj;
-        if(tempBroj < minTemp)
+        if(brojac == 1)
         {
-            minTemp = tempBroj;
+            nazivi.push_back(linija);
+            brojac++;
         }
-        if(tempBroj > maxTemp)
+        else if(brojac == 0)
         {
-            maxTemp = tempBroj;
+            datumi.push_back(linija);
+            brojac++;
         }
+        else if(brojac == 2)
+        {
+           temperature.push_back(linija);
+            brojac = 0;
+        }
+        brojacLinija++;
     }
-    prosjecnaTemp = double(suma) / brojac;
+
+    for(auto a : temperature){
+            stringstream ss(a);
+      while(ss >> tempBroj >> znak ){
+          if(tempBroj == '\r') continue;
+        cout << tempBroj << " ";
+      }
+
+    }
+
+     for(auto a : TempToINT){
+        cout << a << endl;
+    }
+
+
+
     fstream drugifajl("IZVJESTAJ.txt", ios::out);
-    if(drugifajl.is_open())
+    for(auto i = 0; i < brojacLinija-1; i++)
     {
-        drugifajl << meteoStanica << endl;
+        drugifajl << nazivi[i] << endl;
         drugifajl << "--------------------" <<endl;
-        drugifajl << "Datum mjerenja : " << datumMjerenja << endl;
-        drugifajl << "Minimalna temperatura : " << minTemp << endl;
-        drugifajl << "Maksimalna temperatura : " << maxTemp << endl;
-        drugifajl << "Prosjecna temperatura : " << prosjecnaTemp << endl;
+        drugifajl << "Datum mjerenja : " << datumi[i] << endl;
+        drugifajl << "Temperature mjerenja : " << temperature[i] << endl;
+        drugifajl << endl;
+
     }
+
 
 
 

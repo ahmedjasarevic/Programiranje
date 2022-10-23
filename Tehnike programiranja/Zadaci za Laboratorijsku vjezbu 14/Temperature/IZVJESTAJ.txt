@@ -1,6 +1,20 @@
 Meteoroloska stanica Bjelave
 --------------------
 Datum mjerenja : 23/5/2016
-Minimalna temperatura : 6
-Maksimalna temperatura : 20
-Prosjecna temperatura : 13.1429
+Temperature mjerenja : 7,12,16,20,18,13,6
+
+Mobilno mjerno mjesto Aerodrom, stanica II
+--------------------
+Datum mjerenja : 9/11/2014
+Temperature mjerenja : −1,3,6,10,8
+
+Meteoroloska opservatorija Bjelasnica
+--------------------
+Datum mjerenja : 9/11/2014
+Temperature mjerenja : −5,−2,0,3,1,2,−1,−4
+
+
+--------------------
+Datum mjerenja : 
+Temperature mjerenja : 
+
