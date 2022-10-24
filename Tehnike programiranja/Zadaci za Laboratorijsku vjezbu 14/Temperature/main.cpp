@@ -40,20 +40,18 @@ int main()
         }
         else if(brojac == 2)
         {
+            stringstream iss(linija);
+            int brojneki;
+            while(iss >> brojneki >>znak ){
+                TempToINT.push_back(brojneki);
+            }
            temperature.push_back(linija);
             brojac = 0;
         }
         brojacLinija++;
     }
 
-    for(auto a : temperature){
-            stringstream ss(a);
-      while(ss >> tempBroj >> znak ){
-          if(tempBroj == '\r') continue;
-        cout << tempBroj << " ";
-      }
 
-    }
 
      for(auto a : TempToINT){
         cout << a << endl;
