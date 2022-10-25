@@ -157,6 +157,22 @@ public:
 
 };
 
+void ValidirajUnos(double x,double y, double z,double r){
+     if(cin.fail())
+        {
+            while(cin.fail())
+            {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                cout <<"Nevalidan unos." << endl;
+                cout << "Unesite kuglu: "  << endl;
+                cin >> x >>y >> z >>r;
+            }
+        }
+
+
+}
+
 int main()
 {
     int n;
@@ -167,25 +183,12 @@ int main()
     shared_ptr<Kugla> pok[n];
     for(int i = 0; i < n; i++)
     {
-        cout << "Unesite kuglu: " << i+1 << endl;
+        cout << "Unesite " << i + 1 << ". kuglu: ";
         cin >> x >>y >> z >>r;
-        if(cin.fail())
-        {
-            while(cin.fail())
-            {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(),'\n');
-                cout <<"Nevalidan unos." << endl;
-                cout << "Unesite kuglu: " << i+1 << endl;
-                cin >> x >>y >> z >>r;
-            }
-        }
+        ValidirajUnos(x,y,z,r);
         pok[i] = make_shared<Kugla>(x,y,z,r);
         vec.push_back(pok[i]);
     }
-
-
-
     for(int i = 0; i < n; i++)
     {
         vec[i]->Ispisi();
