@@ -18,6 +18,18 @@ public:
     }
     Kugla(double x, double y, double z, double r = 0)
     {
+        try
+        {
+            if(x < 0 || y < 0 || z < 0 || r < 0) throw domain_error("Negativan unos");
+        }
+        catch(...)
+        {
+            while(x < 0 || y < 0 || z < 0 || r < 0)
+            {
+                cout <<"Ponovite unos: " ;
+                cin >> x >> y >>z >>r;
+            }
+        }
         Kugla::x = x;
         Kugla::y = y;
         Kugla::z = z;
@@ -157,21 +169,6 @@ public:
 
 };
 
-void ValidirajUnos(double x,double y, double z,double r){
-     if(cin.fail())
-        {
-            while(cin.fail())
-            {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(),'\n');
-                cout <<"Nevalidan unos." << endl;
-                cout << "Unesite kuglu: "  << endl;
-                cin >> x >>y >> z >>r;
-            }
-        }
-
-
-}
 
 int main()
 {
@@ -185,8 +182,8 @@ int main()
     {
         cout << "Unesite " << i + 1 << ". kuglu: ";
         cin >> x >>y >> z >>r;
-        ValidirajUnos(x,y,z,r);
-        pok[i] = make_shared<Kugla>(x,y,z,r);
+        Kugla a(x,y,z,r);
+        pok[i] = make_shared<Kugla>(a);
         vec.push_back(pok[i]);
     }
     for(int i = 0; i < n; i++)
