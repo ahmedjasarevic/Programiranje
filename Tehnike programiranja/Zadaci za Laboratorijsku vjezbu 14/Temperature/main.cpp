@@ -3,7 +3,10 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <limits.h>
+
 using namespace std;
+
 
 int main()
 {
@@ -40,12 +43,7 @@ int main()
         }
         else if(brojac == 2)
         {
-            stringstream iss(linija);
-            int brojneki;
-            while(iss >> brojneki >>znak ){
-                TempToINT.push_back(brojneki);
-            }
-           temperature.push_back(linija);
+            temperature.push_back(linija);
             brojac = 0;
         }
         brojacLinija++;
@@ -53,11 +51,35 @@ int main()
 
 
 
-     for(auto a : TempToINT){
-        cout << a << endl;
+
+    for(auto a : temperature)
+    {
+
+        stringstream ss(a);
+        int current_num;
+        while (true)
+        {
+            int d;
+            if (ss >> d )
+                TempToINT.push_back(d);
+
+            else
+            {
+
+                ss.clear(); break;
+
+            }
+        }
+
     }
 
 
+
+    for(auto a : TempToINT)
+    {
+        cout <<a  <<endl;
+
+    }
 
     fstream drugifajl("IZVJESTAJ.txt", ios::out);
     for(auto i = 0; i < brojacLinija-1; i++)
