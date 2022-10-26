@@ -25,8 +25,6 @@ int main()
     int maxTemp = INT_MIN;
     vector<string> datumi;
     vector<string> nazivi;
-    vector<string> temperature;
-    vector<int> TempToINT;
     int brojacLinija = 0,brojacProsjeka = 0;
     int broj = 0;
     while(getline(novifajl,linija))
@@ -43,7 +41,22 @@ int main()
         }
         else if(brojac == 2)
         {
-            temperature.push_back(linija);
+            stringstream ss(linija);
+            while(true)
+            {
+                if(ss >> broj)
+                {
+                    cout << broj <<endl;
+                }
+                else
+                {
+
+                    if (ss.eof()) break;
+                    ss.clear();
+                    ss.ignore();
+
+                }
+            }
             brojac = 0;
         }
         brojacLinija++;
@@ -52,34 +65,6 @@ int main()
 
 
 
-    for(auto a : temperature)
-    {
-
-        stringstream ss(a);
-        int current_num;
-        while (true)
-        {
-            int d;
-            if (ss >> d )
-                TempToINT.push_back(d);
-
-            else
-            {
-
-                ss.clear(); break;
-
-            }
-        }
-
-    }
-
-
-
-    for(auto a : TempToINT)
-    {
-        cout <<a  <<endl;
-
-    }
 
     fstream drugifajl("IZVJESTAJ.txt", ios::out);
     for(auto i = 0; i < brojacLinija-1; i++)
@@ -87,7 +72,7 @@ int main()
         drugifajl << nazivi[i] << endl;
         drugifajl << "--------------------" <<endl;
         drugifajl << "Datum mjerenja : " << datumi[i] << endl;
-        drugifajl << "Temperature mjerenja : " << temperature[i] << endl;
+        drugifajl << "Temperature mjerenja : "  << endl;
         drugifajl << endl;
 
     }
