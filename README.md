@@ -37,3 +37,8 @@
 - [Zadaci za samostalno vjezbanje 12](https://github.com/ahmedjasarevic/Programiranje/tree/main/Tehnike%20programiranja/Zadaci%20za%20samostalno%20vjezbanje%2012)
 - [Zadaci za samostalno vjezbanje 13](https://github.com/ahmedjasarevic/Programiranje/tree/main/Tehnike%20programiranja/Zadaci%20za%20samostalno%20vje%C5%BEbanje%2013)
 
+## Zadace
+- [Zadaca 2](https://github.com/ahmedjasarevic/Programiranje/tree/main/Tehnike%20programiranja/Zadaca)
+- [Zadaca 3](https://github.com/ahmedjasarevic/Programiranje/tree/main/Tehnike%20programiranja/Zadaca%203)
+- [Zadaca 4](https://github.com/ahmedjasarevic/Programiranje/tree/main/Tehnike%20programiranja/Zadaca%204)
+- [Zadaca 5](https://github.com/ahmedjasarevic/Programiranje/tree/main/Tehnike%20programiranja/Zadaca%205)
