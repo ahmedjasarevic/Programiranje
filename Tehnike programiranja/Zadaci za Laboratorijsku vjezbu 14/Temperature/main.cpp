@@ -41,22 +41,7 @@ int main()
         }
         else if(brojac == 2)
         {
-            stringstream ss(linija);
-            while(true)
-            {
-                if(ss >> broj)
-                {
-                    cout << broj <<endl;
-                }
-                else
-                {
-
-                    if (ss.eof()) break;
-                    ss.clear();
-                    ss.ignore();
-
-                }
-            }
+          cout << linija << " " <<endl;
             brojac = 0;
         }
         brojacLinija++;
