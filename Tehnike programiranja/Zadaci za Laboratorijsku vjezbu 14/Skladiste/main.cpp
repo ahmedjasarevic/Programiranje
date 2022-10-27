@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <limits.h>
+#include <sstream>
 using namespace std;
 
 class ApstraktnaKlasa
@@ -144,45 +145,75 @@ public:
 
     void UcitajIzDatoteke(string imeDatoteke)
     {
-        string line1,line2;
-        char znak,znak2;
-        int num;
-        ifstream novifajl(imeDatoteke);
+        int brojac = 0;
+        string line1;
+        bool DaLiJeSanduk = false;
+        bool DaLiJeBure = false;
+        vector<string> nazivi;
+        vector<int> brojevi;
+        int brojNeki;
+        ifstream novifajl(imeDatoteke, ios::in);
+        string novi;
+        string ukupnaRijec;
         if(novifajl.fail())
         {
             cerr << "Gteska" << endl;
         }
-        while(getline(novifajl,line1)){
-        string novi;
-        if(line1[0] == 'S' )
+        if(novifajl.is_open())
         {
-            for(int i = 1; i<line1.size(); i++)
+            while(getline(novifajl,line1))
             {
-                if(line1[i] == ' ') continue;
-                novi += line1[i];
+                if(brojac == 0)
+                {
+                    if(line1[0] == 'S')
+                    {
+                        DaLiJeSanduk = true;
+                        DaLiJeBure = false;
+                        for(int i = 2; i <line1.size(); i++)
+                        {
+                            ukupnaRijec += line1[i];
+                        }
+                        nazivi.push_back(ukupnaRijec);
+                    }
+                    if(line1[0] == 'B')
+                    {
+                        DaLiJeBure = true;
+                        DaLiJeSanduk = false;
+                        for(int i = 2; i <line1.size(); i++)
+                        {
+                            ukupnaRijec += line1[i];
+                        }
+                        nazivi.push_back(ukupnaRijec);
+                    }
+                    brojac++;
+                }
+                else
+                {
+                    stringstream ss(line1);
+                    while(ss >> brojNeki)
+                    {
+                        brojevi.push_back(brojNeki);
+                    }
+                    if(DaLiJeBure == true && DaLiJeSanduk == false)
+                    {
+
+                        KreirajBure(ukupnaRijec,brojevi[0],brojevi[1]);
+                        ukupnaRijec = "";
+                    }
+                    if(DaLiJeSanduk == true && DaLiJeBure == false)
+                    {
+                        KreirajSanduk(ukupnaRijec,brojevi[0],brojevi[1],brojevi[2]);
+                        ukupnaRijec = "";
+                    }
+                    brojevi.clear();
+
+                    brojac = 0;
+                }
             }
-            vector<int> vektorBrojeva;
-            while(novifajl >> num)
-            {
-                vektorBrojeva.push_back(num);
-            }
-            KreirajSanduk(novi,vektorBrojeva[0],vektorBrojeva[1],vektorBrojeva[2]);
+
         }
-        if(line1[0] == 'B' )
-        {
-            for(int i = 1; i<line1.size(); i++)
-            {
-                if(line1[i] == ' ') continue;
-                novi += line1[i];
-            }
-            vector<int> vektorBrojeva;
-            while(novifajl >> num)
-            {
-                vektorBrojeva.push_back(num);
-            }
-            KreirajBure(novi,vektorBrojeva[0],vektorBrojeva[1]);
-        }
-    }
+
+
     }
 
 
