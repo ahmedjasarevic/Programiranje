@@ -4,6 +4,7 @@
 #include <vector>
 #include <initializer_list>
 #include <algorithm>
+#include <sstream>
 #include <fstream>
 
 using namespace std;
@@ -251,31 +252,48 @@ public:
         string line;
         string t1,t2;
         int brojac = 0;
+        int brojNeki;
+        vector<int> rezultati;
+        vector<string> rezultatiString;
+        char znak;
+        char tim1[20];
+        char tim2[20];
         if(dat.is_open())
         {
             while(getline(dat,line))
             {
                 if(brojac == 0)
                 {
-                    t1 += line;
+                    if (!line.empty() && line[line.size() - 1] == '\r')
+                        line.erase(line.size() - 1);
+                    for(int i = 0; i <line.size()-1; i++)
+                    {
+                        tim1[i] = line[i];
+                    }
                     brojac++;
                 }
                 else if(brojac == 1)
                 {
-                    t2 += line;
-                    break;
+                    if (!line.empty() && line[line.size() - 1] == '\r')line.erase(line.size() - 1);
+                    for(int i = 0; i <line.size(); i++)
+                    {
+                        tim2[i] = line[i];
+                    }
                     brojac++;
+
                 }
-                else if(brojac == 2)
+                else if (brojac == 2)
                 {
+                    cout << line;
+                    rezultatiString.push_back(line);
                     brojac = 0;
                 }
             }
-            char tim1[t1.size()];
-            char tim2[t2.size()];
-            RegistrirajUtakmicu(strcpy(tim1,t1.c_str()),strcpy(tim2,t2.c_str()),2,3);
-            cout << tim1 <<endl;
-            cout << tim2 <<endl;
+            for(auto a : rezultatiString)
+            {
+                cout << a;
+            }
+            RegistrirajUtakmicu(tim1,tim2,2,3);
             IspisiTabelu();
         }
     }
@@ -290,7 +308,6 @@ int main()
     a.IspisiTabelu();
     a.RegistrirajUtakmicu("Sarajevo","Zeljeznicar",1,0);
     a.IspisiTabelu();
-    a.SacuvajStanje("LIGA.dat");
     a.AzurirajIzDatoteke("ligatxt.txt");
 
     return 0;
