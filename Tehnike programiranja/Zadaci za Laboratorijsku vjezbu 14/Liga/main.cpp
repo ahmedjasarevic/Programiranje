@@ -252,9 +252,7 @@ public:
         string line;
         string t1,t2;
         int brojac = 0;
-        int brojNeki;
-        vector<int> rezultati;
-        vector<string> rezultatiString;
+        int brojPrvi,brojDrugi;
         char znak;
         char tim1[20];
         char tim2[20];
@@ -284,16 +282,16 @@ public:
                 }
                 else if (brojac == 2)
                 {
-                    cout << line;
-                    rezultatiString.push_back(line);
+                    brojPrvi = line[0] - '0';
+                    brojDrugi = line[2] - '0';
                     brojac = 0;
+                    break;
                 }
+
+
+
             }
-            for(auto a : rezultatiString)
-            {
-                cout << a;
-            }
-            RegistrirajUtakmicu(tim1,tim2,2,3);
+            RegistrirajUtakmicu(tim1,tim2,brojPrvi,brojDrugi);
             IspisiTabelu();
         }
     }
