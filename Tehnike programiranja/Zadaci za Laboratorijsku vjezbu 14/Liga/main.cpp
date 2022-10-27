@@ -228,23 +228,56 @@ public:
 
     }
 
-    void ObrisiSve(){
-    for(int i = 0; i<brojac; i++)
+    void ObrisiSve()
+    {
+        for(int i = 0; i<brojac; i++)
         {
             delete broj_timova[i];
         }
     }
 
-    void SacuvajStanje(string imeDatoteke){
+    void SacuvajStanje(string imeDatoteke)
+    {
         ofstream wf(imeDatoteke, ios::out | ios::binary);
-     for(int i = 0; i<brojac; i++){
-          wf.write((char *) &broj_timova[i], sizeof(Tim));
-          wf.close();
-          if(!wf.good()) {
-        cout << "Greska" << endl;
-     }
-     }
+        if(wf)
+        {
+            wf.write(reinterpret_cast<char*>(broj_timova), sizeof(broj_timova[0]) * brojac);
+        }
+    }
 
+    void AzurirajIzDatoteke(string imeDatoteke)
+    {
+        fstream dat(imeDatoteke);
+        string line;
+        string t1,t2;
+        int brojac = 0;
+        if(dat.is_open())
+        {
+            while(getline(dat,line))
+            {
+                if(brojac == 0)
+                {
+                    t1 += line;
+                    brojac++;
+                }
+                else if(brojac == 1)
+                {
+                    t2 += line;
+                    break;
+                    brojac++;
+                }
+                else if(brojac == 2)
+                {
+                    brojac = 0;
+                }
+            }
+            char tim1[t1.size()];
+            char tim2[t2.size()];
+            RegistrirajUtakmicu(strcpy(tim1,t1.c_str()),strcpy(tim2,t2.c_str()),2,3);
+            cout << tim1 <<endl;
+            cout << tim2 <<endl;
+            IspisiTabelu();
+        }
     }
 };
 
@@ -255,19 +288,10 @@ int main()
     Liga b(5);
     Liga a({"Borac","Celik","Jedinstvo","Sarajevo","Zeljeznicar","Zrinjski"});
     a.IspisiTabelu();
-    char tim1[20],tim2[20];
-    int rez1,rez2;
-    while(1)
-    {
-        cout << "Unesite ime prvog tima (ENTER za kraj): ";
-        cin >> tim1;
-        cout << "Unesite ime drugog tima: ";
-        cin >> tim2;
-        cout << "Unesite broj postignutih golova za oba tima: ";
-        cin >> rez1 >> rez2 ;
-        a.RegistrirajUtakmicu(tim1,tim2,rez1,rez2);
-        a.IspisiTabelu();
-        a.SacuvajStanje("LIGA.dat");
-    }
+    a.RegistrirajUtakmicu("Sarajevo","Zeljeznicar",1,0);
+    a.IspisiTabelu();
+    a.SacuvajStanje("LIGA.dat");
+    a.AzurirajIzDatoteke("ligatxt.txt");
+
     return 0;
 }
