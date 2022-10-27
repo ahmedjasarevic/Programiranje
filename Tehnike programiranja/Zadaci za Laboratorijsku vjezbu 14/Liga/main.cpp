@@ -255,6 +255,7 @@ public:
         int brojPrvi,brojDrugi;
         char znak;
         char tim1[20];
+        char tim1A[20];
         char tim2[20];
         if(dat.is_open())
         {
@@ -262,17 +263,15 @@ public:
             {
                 if(brojac == 0)
                 {
-                    if (!line.empty() && line[line.size() - 1] == '\r')
-                        line.erase(line.size() - 1);
-                    for(int i = 0; i <line.size()-1; i++)
+                    for(int i = 0; i <line.size(); i++)
                     {
+                        if(line[i] == ' ') continue;
                         tim1[i] = line[i];
                     }
                     brojac++;
                 }
                 else if(brojac == 1)
                 {
-                    if (!line.empty() && line[line.size() - 1] == '\r')line.erase(line.size() - 1);
                     for(int i = 0; i <line.size(); i++)
                     {
                         tim2[i] = line[i];
@@ -284,15 +283,14 @@ public:
                 {
                     brojPrvi = line[0] - '0';
                     brojDrugi = line[2] - '0';
+                    RegistrirajUtakmicu(tim1,tim2,brojPrvi,brojDrugi);
+                    IspisiTabelu();
+                    memset(tim1, 0, sizeof tim1);
+                    memset(tim2, 0, sizeof tim2);
                     brojac = 0;
-                    break;
                 }
 
-
-
             }
-            RegistrirajUtakmicu(tim1,tim2,brojPrvi,brojDrugi);
-            IspisiTabelu();
         }
     }
 };
