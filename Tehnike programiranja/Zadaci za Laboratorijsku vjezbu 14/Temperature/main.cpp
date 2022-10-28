@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <iterator>
 #include <vector>
 #include <sstream>
 #include <algorithm>
@@ -25,6 +26,7 @@ int main()
     int maxTemp = INT_MIN;
     vector<string> datumi;
     vector<string> nazivi;
+    vector<int> tempere;
     int brojacLinija = 0,brojacProsjeka = 0;
     int broj = 0;
     while(getline(novifajl,linija))
@@ -41,15 +43,26 @@ int main()
         }
         else if(brojac == 2)
         {
-          cout << linija << " " <<endl;
             brojac = 0;
         }
         brojacLinija++;
     }
+    novifajl.clear();
+    novifajl.seekg(0);
+    while(std::getline(novifajl, linija) && std::getline(novifajl, linija) )
+    {
+        getline(novifajl,linija);
+        cout << linija <<endl;
+        istringstream iss( linija );
+        int number;
+        while( iss >> number >>znak)
+            tempere.push_back(number);
+            iss.clear();
+    }
 
-
-
-
+for(auto a : tempere){
+    cout << a << endl;
+}
 
     fstream drugifajl("IZVJESTAJ.txt", ios::out);
     for(auto i = 0; i < brojacLinija-1; i++)
