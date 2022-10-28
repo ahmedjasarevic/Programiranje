@@ -68,11 +68,29 @@ int main()
 
     }
     fstream drugifajl("IZVJESTAJ.txt", ios::out);
-      for(int i = 0; i < datumi.size(); i++)
+    for(int i = 0; i < datumi.size(); i++)
+    {
+        for(int j = 0; j < (datumi.size() - i - 1); j++)
         {
-            for(int j = 0; j < (datumi.size() - i - 1); j++)
+            if(datumi[j] < datumi[j+1])
             {
-                if(datumi[j] < datumi[j+1])
+                swap(datumi[j],datumi[j+1]);
+                swap(nazivi[j],nazivi[j+1]);
+                swap(minVec[j],minVec[j+1]);
+                swap(maxVec[j],maxVec[j+1]);
+                swap(sumaVec[j],sumaVec[j+1]);
+            }
+        }
+    }
+
+    for(int i = 0; i < datumi.size(); i++)
+    {
+        for(int j = 0; j < ( datumi.size() - i - 1); j++)
+        {
+            if(datumi[j] == datumi[j+1])
+            {
+
+                if(sumaVec[j] > sumaVec[j+1])
                 {
                     swap(datumi[j],datumi[j+1]);
                     swap(nazivi[j],nazivi[j+1]);
@@ -82,25 +100,7 @@ int main()
                 }
             }
         }
-
-         for(int i = 0; i < datumi.size(); i++)
-        {
-            for(int j = 0; j < ( datumi.size() - i - 1); j++)
-            {
-                if(datumi[j] == datumi[j+1])
-                {
-
-                    if(sumaVec[j] > sumaVec[j+1])
-                    {
-                        swap(datumi[j],datumi[j+1]);
-                    swap(nazivi[j],nazivi[j+1]);
-                    swap(minVec[j],minVec[j+1]);
-                    swap(maxVec[j],maxVec[j+1]);
-                    swap(sumaVec[j],sumaVec[j+1]);
-                    }
-                }
-            }
-        }
+    }
     for(auto i = 0; i < brojacLinija; i++)
     {
         if(nazivi[i] == "") break;
