@@ -302,8 +302,6 @@ int main()
     Liga b(5);
     Liga a({"Borac","Celik","Jedinstvo","Sarajevo","Zeljeznicar","Zrinjski"});
     a.IspisiTabelu();
-    a.RegistrirajUtakmicu("Sarajevo","Zeljeznicar",1,0);
-    a.IspisiTabelu();
     a.AzurirajIzDatoteke("ligatxt.txt");
 
     return 0;

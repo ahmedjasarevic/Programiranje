@@ -191,6 +191,10 @@ public:
         imeiPrezime = novo;
     }
 
+    void IspisiPodatke(){
+    cout << "Ime: " <<DajImeIPrezime();
+    }
+
 
 };
 int GradjaninBiH::br = 0;
@@ -199,16 +203,6 @@ int GradjaninBiH::br = 0;
 int main()
 {
     GradjaninBiH g1("Rambo Sulejmanovic", 1305956174235);
-    GradjaninBiH g2("Ahmed Sulejmanovic", 1306956174235);
-    GradjaninBiH gX("A Sulejmanovic", 1205956174235);
-    GradjaninBiH gY("H Sulejmanovic", 1105956174235);
-    GradjaninBiH gz("M Sulejmanovic", 1305956174235);
-    Pol a;
-    GradjaninBiH g3(26,9,2004,22,a);
-    cout << g1.DajDanRodjenja() << endl;
-    cout << g1.DajMjesecRodjenja() << endl;
-    cout << g1.DajGodinuRodjenja() << endl;
-    cout << g1.DajSifruRegije() << endl;
-    g1.DajPol();
+    g1.IspisiPodatke();
     return 0;
 }
